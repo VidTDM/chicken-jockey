@@ -14,7 +14,7 @@ public class SkeletonSpawnEvent {
     @SubscribeEvent
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof AbstractSkeleton skeleton) {
-            if (skeleton.level().random.nextInt(5) == 0) {
+            if (skeleton.level().random.nextInt(20) < 3) {
                 skeleton.goalSelector.addGoal(3, new SkeletonSpiderJockeyGoal(skeleton));
                 skeleton.getPersistentData().putBoolean(IS_JOCKEY_SEEKER, true);
             }

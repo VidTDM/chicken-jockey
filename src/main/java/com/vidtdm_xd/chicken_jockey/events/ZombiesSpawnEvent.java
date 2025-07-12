@@ -14,7 +14,7 @@ public class ZombiesSpawnEvent {
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof Zombie zombie) {
             if (zombie.isBaby()) {
-                if (zombie.level().random.nextInt(5) == 0) {
+                if (zombie.level().random.nextInt(20) < 3) {
                     zombie.getPersistentData().putBoolean(IS_JOCKEY_SEEKER, true);
                     zombie.goalSelector.addGoal(2, new BabyZombieJockeyGoal(zombie));
                 }
