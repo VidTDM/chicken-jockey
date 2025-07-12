@@ -1,5 +1,6 @@
 package com.vidtdm_xd.chicken_jockey.goal;
 
+import com.vidtdm_xd.chicken_jockey.ChickenJockey;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.animal.*;
@@ -77,6 +78,7 @@ public class BabyZombieJockeyGoal extends Goal {
 
     private boolean isValidJockey(Mob mob) {
         if (!mob.isAlive() || mob.isVehicle()) return false;
+        ChickenJockey.LOGGER.info(String.valueOf(mob.isBaby()));
         if (mob instanceof Chicken chicken && !chicken.isBaby()) {
             return true;
         } else if (mob instanceof Pig pig && !pig.isBaby()) {

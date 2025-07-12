@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 @Mod(ChickenJockey.MODID)
 public class ChickenJockey {
     public static final String MODID = "chicken_jockey";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public ChickenJockey(IEventBus modEventBus, ModContainer modContainer) {

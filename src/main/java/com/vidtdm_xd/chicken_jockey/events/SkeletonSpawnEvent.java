@@ -6,26 +6,17 @@ import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
-import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 
-@EventBusSubscriber(modid = ChickenJockey.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ChickenJockey.MODID)
 public class SkeletonSpawnEvent {
     private static final String IS_JOCKEY_SEEKER = "IsJockeySeeker";
 
     @SubscribeEvent
-    public static void onEntitySpawn(FinalizeSpawnEvent event) {
-        if (event.getEntity() instanceof AbstractSkeleton skeleton) {
-            if (skeleton.level().random.nextInt(5) == 0) {
-                skeleton.getPersistentData().putBoolean(IS_JOCKEY_SEEKER, true);
-            }
-        }
-    }
-
-    @SubscribeEvent
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof AbstractSkeleton skeleton) {
-            if (skeleton.getPersistentData().getBoolean(IS_JOCKEY_SEEKER)) {
+            if (skeleton.level().random.nextInt(5) == 0) {
                 skeleton.goalSelector.addGoal(3, new SkeletonSpiderJockeyGoal(skeleton));
+                skeleton.getPersistentData().putBoolean(IS_JOCKEY_SEEKER, true);
             }
         }
     }
