@@ -1,6 +1,5 @@
 package com.vidtdm_xd.chicken_jockey.goal;
 
-import com.vidtdm_xd.chicken_jockey.ChickenJockey;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.animal.*;
@@ -18,7 +17,7 @@ public class BabyZombieJockeyGoal extends Goal {
     private final Zombie baby_zombie;
     private Mob target;
     private final double speed = 1.2D;
-    private final int searchRadius = 16;
+    private final int searchRadius = 35;
     private int cooldown;
 
     public BabyZombieJockeyGoal(Zombie zombie) {
@@ -68,7 +67,7 @@ public class BabyZombieJockeyGoal extends Goal {
     public void tick() {
         if (target == null) return;
         baby_zombie.getNavigation().moveTo(target, speed);
-        if (baby_zombie.distanceToSqr(target) <= 1.0d) {
+        if (baby_zombie.distanceToSqr(target) <= 2.0d) {
             if (!target.isVehicle()) {
                 baby_zombie.startRiding(target, true);
             }
@@ -78,10 +77,9 @@ public class BabyZombieJockeyGoal extends Goal {
 
     private boolean isValidJockey(Mob mob) {
         if (!mob.isAlive() || mob.isVehicle()) return false;
-        ChickenJockey.LOGGER.info(String.valueOf(mob.isBaby()));
         if (mob instanceof Chicken chicken && !chicken.isBaby()) {
             return true;
-        } else if (mob instanceof Pig pig && !pig.isBaby()) {
+        } else if (mob instanceof Pig pig && !pig.isBaby() && !pig.isSaddled()) {
             return true;
         } else if (mob instanceof Cow cow && !cow.isBaby()) {
             return true;

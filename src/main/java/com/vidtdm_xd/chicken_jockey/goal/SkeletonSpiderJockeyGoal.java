@@ -56,7 +56,7 @@ public class SkeletonSpiderJockeyGoal extends Goal {
     public void tick() {
         if (targetSpider != null) {
             skeleton.getNavigation().moveTo(targetSpider, speed);
-            if (skeleton.distanceToSqr(targetSpider) <= 1.5d && !targetSpider.isVehicle()) {
+            if (skeleton.distanceToSqr(targetSpider) <= 2.0d && !targetSpider.isVehicle()) {
                 skeleton.startRiding(targetSpider, true);
             }
         }
